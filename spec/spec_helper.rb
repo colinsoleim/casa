@@ -18,7 +18,6 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
-    Capybara.server = :puma, { Silent: true }
+    driven_by :selenium, using: :chrome, options: { args: ["headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage"] }
   end
 end
