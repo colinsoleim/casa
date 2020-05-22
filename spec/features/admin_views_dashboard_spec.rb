@@ -44,7 +44,7 @@ RSpec.describe "admin views dashboard", type: :feature do
     expect(page).to have_css("form#new_user")
   end
 
-  it "can filter volunteers", type: :system do
+  it "can filter volunteers", type: :system, js: true do
     create_list(:user, 3, :volunteer)
     create_list(:user, 2, :inactive)
 
