@@ -53,6 +53,8 @@ RSpec.describe "admin views dashboard", type: :feature do
     visit root_path
     expect(page).to have_selector(".volunteer-filters")
 
+    sleep 10
+
     # by default, only active users are shown, so result should be 4 here
     # expect(page.all("table#volunteers tr").count).to eq 4
 
