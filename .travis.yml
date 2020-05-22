@@ -12,9 +12,15 @@ services:
   - postgresql
 
 addons:
-  apt:
-    - google-chrome-stable
-    - chromium-chromedriver
+  - chrome: stable
+
+before_install:
+  - wget http://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - rm chromedriver_linux64.zip
+  - sudo mv -f chromedriver /usr/local/bin/
+  - sudo chmod +x /usr/local/bin/chromedriver
+  - google-chrome-stable --headless --no-sandbox
 
 install:
   - travis_retry gem install bundler
@@ -27,7 +33,6 @@ install:
 before_script:
   - psql -c 'create database casa_test;' -U postgres
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
-  - google-chrome-stable --headless --no-sandbox
 
 script:
   - bundle exec rails webpacker:compile
