@@ -27,7 +27,7 @@ install:
   - travis_retry bundle install
   - travis_retry yarn
   - bundle install
-  
+
 script:
   - bundle exec rails webpacker:compile
   - bundle exec brakeman
